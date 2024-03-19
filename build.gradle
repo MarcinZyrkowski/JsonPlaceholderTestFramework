@@ -10,7 +10,7 @@ repositories {
 }
 
 ext {
-    lombokVersion = '1.18.22'
+    lombokVersion = '1.18.30'
 }
 
 dependencies {
@@ -20,6 +20,7 @@ dependencies {
     annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
     implementation 'io.rest-assured:rest-assured:5.4.0'
     implementation 'org.assertj:assertj-core:3.25.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
 }
 
 test {
