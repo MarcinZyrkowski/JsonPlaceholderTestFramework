@@ -14,6 +14,15 @@ repositories {
 ext {
     lombokVersion = '1.18.30'
     junitSuiteVersion = '1.10.2'
+    aspectJVersion = '1.9.20.1'
+}
+
+// Define configuration for AspectJ agent
+configurations {
+    agent {
+        canBeResolved = true
+        canBeConsumed = true
+    }
 }
 
 dependencies {
@@ -34,8 +43,12 @@ dependencies {
     // allure
     implementation 'io.qameta.allure:allure-junit5:2.26.0'
     implementation 'io.qameta.allure:allure-rest-assured:2.26.0'
+    // needed for allure steps
+    agent "org.aspectj:aspectjweaver:${aspectJVersion}"
 }
 
 test {
     useJUnitPlatform()
+    // Configure javaagent for test execution
+    jvmArgs = [ "-javaagent:${configurations.agent.singleFile}" ]
 }

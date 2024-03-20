@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.assertj.core.api.Assertions;
@@ -10,6 +11,7 @@ public class JsonPlaceholderController {
 
     private final JsonPlaceholderClient jsonPlaceholderClient = new JsonPlaceholderClient();
 
+    @Step("Get Post by Id: {id}")
     public Post getPostById(int id) {
         Response response = jsonPlaceholderClient.getPostById(id);
 

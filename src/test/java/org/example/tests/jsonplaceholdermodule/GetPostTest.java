@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class GetPostTest extends BaseTest {
 
     @Test
-    @DisplayName("Get Post test")
+    @DisplayName("Get Post Test")
     @Description("Get Post Test")
     public void getPostTest() {
         Post post = jsonPlaceholderController.getPostById(1);
