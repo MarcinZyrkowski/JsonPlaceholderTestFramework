@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'io.qameta.allure' version '2.11.2'
 }
 
 
@@ -29,6 +30,10 @@ dependencies {
     // needed for creating junit5 suite
     implementation "org.junit.platform:junit-platform-suite-api:${junitSuiteVersion}"
     implementation "org.junit.platform:junit-platform-suite-engine:${junitSuiteVersion}"
+
+    // allure
+    implementation 'io.qameta.allure:allure-junit5:2.26.0'
+    implementation 'io.qameta.allure:allure-rest-assured:2.26.0'
 }
 
 test {
