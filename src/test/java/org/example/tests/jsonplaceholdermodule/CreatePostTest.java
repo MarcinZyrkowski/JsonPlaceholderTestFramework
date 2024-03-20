@@ -1,6 +1,8 @@
 package org.example.tests.jsonplaceholdermodule;
 
 import io.qameta.allure.Description;
+import org.example.assertions.HttpAssertions;
+import org.example.generators.PostRequestGenerator;
 import org.example.model.PostRequest;
 import org.example.model.PostResponse;
 import org.example.tests.BaseTest;
@@ -12,12 +14,15 @@ public class CreatePostTest extends BaseTest {
     @Test
     @DisplayName("Publish Post Test")
     @Description("Publish Post Test")
-    public void publishPost() {
-        PostRequest postRequest = new PostRequest(4, "xc", "xxc");
+    public void publishPostTest() {
+        // given
+        PostRequest postRequest = PostRequestGenerator.generateRandom();
 
-        PostResponse post = jsonPlaceholderController.publishPost(postRequest);
+        // when
+        PostResponse postResponse = jsonPlaceholderController.publishPost(postRequest);
 
-        System.out.println(post);
+        // then
+        HttpAssertions.verifyPostRequestAndResponseAreEquals(postRequest, postResponse);
     }
 
 }

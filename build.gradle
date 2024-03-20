@@ -15,6 +15,7 @@ ext {
     lombokVersion = '1.18.30'
     junitSuiteVersion = '1.10.2'
     aspectJVersion = '1.9.20.1'
+    allureVersion = '2.26.0'
 }
 
 // Define configuration for AspectJ agent
@@ -41,10 +42,13 @@ dependencies {
     implementation "org.junit.platform:junit-platform-suite-engine:${junitSuiteVersion}"
 
     // allure
-    implementation 'io.qameta.allure:allure-junit5:2.26.0'
-    implementation 'io.qameta.allure:allure-rest-assured:2.26.0'
+    implementation "io.qameta.allure:allure-junit5:${allureVersion}"
+    implementation "io.qameta.allure:allure-rest-assured:${allureVersion}"
     // needed for allure steps
     agent "org.aspectj:aspectjweaver:${aspectJVersion}"
+
+    implementation 'com.github.javafaker:javafaker:1.0.2'
+    implementation 'org.apache.commons:commons-lang3:3.14.0'
 }
 
 test {
