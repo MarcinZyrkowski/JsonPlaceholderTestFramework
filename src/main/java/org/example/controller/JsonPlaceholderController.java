@@ -8,13 +8,15 @@ import org.example.model.Post;
 
 public class JsonPlaceholderController {
 
-    private JsonPlaceholderClient jsonPlaceholderClient = new JsonPlaceholderClient();
+    private final JsonPlaceholderClient jsonPlaceholderClient = new JsonPlaceholderClient();
 
     public Post getPostById(int id) {
         Response response = jsonPlaceholderClient.getPostById(id);
+
         Assertions.assertThat(response.getStatusCode())
             .withFailMessage("Status code should be 200 but was: " + response.getStatusCode())
             .isEqualTo(HttpStatus.SC_OK);
+
         return response.as(Post.class);
     }
 
