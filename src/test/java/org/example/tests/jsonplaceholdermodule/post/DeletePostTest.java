@@ -1,4 +1,4 @@
-package org.example.tests.jsonplaceholdermodule;
+package org.example.tests.jsonplaceholdermodule.post;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
@@ -18,7 +18,7 @@ public class DeletePostTest extends BaseTest {
         int id = random.nextInt(100);
 
         // when
-        String response = jsonPlaceholderController.deletePost(id);
+        String response = postController.deletePost(id);
 
         // then
         Assertions.assertThat(response)

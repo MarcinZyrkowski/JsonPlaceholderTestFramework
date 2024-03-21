@@ -1,4 +1,4 @@
-package org.example.tests.jsonplaceholdermodule;
+package org.example.tests.jsonplaceholdermodule.post;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
@@ -21,7 +21,7 @@ public class CreatePostTest extends BaseTest {
         PostRequest postRequest = PostRequestGenerator.generateRandom();
 
         // when
-        PostResponse postResponse = jsonPlaceholderController.publishPost(postRequest);
+        PostResponse postResponse = postController.publishPost(postRequest);
 
         // then
         PostAssertions.verifyPostRequestAndResponseAreEquals(postRequest, postResponse);

@@ -3,7 +3,7 @@ package org.example.client;
 import io.restassured.response.Response;
 import org.example.model.PostRequest;
 
-public class JsonPlaceholderClient extends RestClient {
+public class PostClient extends RestClient {
 
     public static final String POST_BY_ID = "/posts/{id}";
     public static final String POSTS = "/posts";

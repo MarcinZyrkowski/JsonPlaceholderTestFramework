@@ -1,4 +1,4 @@
-package org.example.tests.jsonplaceholdermodule;
+package org.example.tests.jsonplaceholdermodule.post;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
@@ -23,7 +23,7 @@ public class UpdatePostTest extends BaseTest {
         PostRequest postRequest = PostRequestGenerator.generateRandom();
 
         // when
-        PostResponse postResponse = jsonPlaceholderController.updatePost(id, postRequest);
+        PostResponse postResponse = postController.updatePost(id, postRequest);
 
         // then
         PostAssertions.verifyPostRequestAndResponseAreEquals(postRequest, postResponse);

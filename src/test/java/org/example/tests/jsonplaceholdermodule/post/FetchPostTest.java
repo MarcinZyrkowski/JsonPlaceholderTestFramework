@@ -1,4 +1,4 @@
-package org.example.tests.jsonplaceholdermodule;
+package org.example.tests.jsonplaceholdermodule.post;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
@@ -27,7 +27,7 @@ public class FetchPostTest extends BaseTest {
             .build();
 
         // when
-        PostResponse postResponse = jsonPlaceholderController.getPostById(id);
+        PostResponse postResponse = postController.getPostById(id);
 
         // then
         Assertions.assertThat(postResponse)
@@ -37,15 +37,16 @@ public class FetchPostTest extends BaseTest {
 
     @Test
     @DisplayName("Get all posts")
+    @Description("Get all posts")
     public void getAllPostsTest() {
         // given
         int expectedNumberOfAllPosts = 100;
 
         // when
-        PostListResponse postListResponse = jsonPlaceholderController.getAllPosts();
+        PostListResponse postListResponse = postController.getAllPosts();
 
         // then
-        Assertions.assertThat(postListResponse.list().size())
+        Assertions.assertThat(postListResponse.posts().size())
             .withFailMessage("Actual number of all posts is different than actual")
             .isEqualTo(expectedNumberOfAllPosts);
     }
