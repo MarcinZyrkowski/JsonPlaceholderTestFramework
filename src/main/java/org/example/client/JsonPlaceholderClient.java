@@ -26,4 +26,11 @@ public class JsonPlaceholderClient extends RestClient {
             .delete(POST_BY_ID);
     }
 
+    public Response putPost(int id, PostRequest postRequest) {
+        return basicRequestSpecification()
+            .body(postRequest)
+            .pathParam("id", id)
+            .put(POST_BY_ID);
+    }
+
 }
