@@ -1,12 +1,14 @@
 package org.example.tests.jsonplaceholdermodule;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
 import org.assertj.core.api.Assertions;
 import org.example.model.PostResponse;
 import org.example.tests.BaseTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@Feature("Get Post")
 public class FetchPostTest extends BaseTest {
 
     @Test

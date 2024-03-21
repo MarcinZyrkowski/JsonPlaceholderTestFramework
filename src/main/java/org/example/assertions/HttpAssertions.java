@@ -3,22 +3,20 @@ package org.example.assertions;
 import org.assertj.core.api.Assertions;
 import org.example.model.PostRequest;
 import org.example.model.PostResponse;
+import org.example.utils.JsonConverter;
 
 public class HttpAssertions {
 
     public static void verifyPostRequestAndResponseAreEquals(PostRequest postRequest,
         PostResponse postResponse) {
-        Assertions.assertThat(postRequest.userId())
-            .withFailMessage("userId is different in request and response")
-            .isEqualTo(postResponse.userId());
 
-        Assertions.assertThat(postRequest.body())
-            .withFailMessage("body is different in request and response")
-            .isEqualTo(postResponse.body());
-
-        Assertions.assertThat(postRequest.title())
-            .withFailMessage("title is different in request and response")
-            .isEqualTo(postResponse.title());
+        Assertions.assertThat(postRequest)
+            .usingRecursiveComparison()
+            .ignoringFields("id")
+            .as("Post request: \n" + JsonConverter.serializePojo(postRequest)
+                + "\n Post response \n" + JsonConverter.serializePojo(postResponse))
+            .withFailMessage("There is mismatch between request and response")
+            .isEqualTo(postResponse);
     }
 
 }

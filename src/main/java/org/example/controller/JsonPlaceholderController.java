@@ -23,6 +23,7 @@ public class JsonPlaceholderController {
         return response.as(PostResponse.class);
     }
 
+    @Step("Publish Post")
     public PostResponse publishPost(PostRequest postRequest) {
         Response response = jsonPlaceholderClient.postPost(postRequest);
 
@@ -31,6 +32,17 @@ public class JsonPlaceholderController {
             .isEqualTo(HttpStatus.SC_CREATED);
 
         return response.as(PostResponse.class);
+    }
+
+    @Step("Delete Post")
+    public String deletePost(int id) {
+        Response response = jsonPlaceholderClient.deletePost(id);
+
+        Assertions.assertThat(response.getStatusCode())
+            .withFailMessage("Status code should be 200 but was: " + response.getStatusCode())
+            .isEqualTo(HttpStatus.SC_OK);
+
+        return response.body().asString();
     }
 
 }

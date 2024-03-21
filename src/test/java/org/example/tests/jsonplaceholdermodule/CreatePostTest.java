@@ -1,6 +1,7 @@
 package org.example.tests.jsonplaceholdermodule;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
 import org.example.assertions.HttpAssertions;
 import org.example.generators.PostRequestGenerator;
 import org.example.model.PostRequest;
@@ -9,6 +10,7 @@ import org.example.tests.BaseTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@Feature("Publish Post")
 public class CreatePostTest extends BaseTest {
 
     @Test
