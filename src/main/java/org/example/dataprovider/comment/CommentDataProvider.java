@@ -1,14 +1,14 @@
-package org.example.dataprovider.comments;
+package org.example.dataprovider.comment;
 
 import io.qameta.allure.Step;
 import java.util.List;
 import org.example.model.Comment;
 import org.example.model.CommentListResponse;
 
-public class CommentsDataProvider {
+public class CommentDataProvider {
 
     @Step("Provide comments for post id = 1")
-    public static CommentListResponse getCommentsForPostId1() {
+    public static CommentListResponse provideCommentsForPostId1() {
         List<Comment> comments = List.of(
             Comment.builder()
                 .postId(1)
@@ -53,6 +53,19 @@ public class CommentsDataProvider {
         );
 
         return new CommentListResponse(comments);
+    }
+
+    @Step("Provide comments for post id = 1 and id = 2")
+    public static CommentListResponse provideCommentsForPostId1AndId2() {
+        Comment expectedComment = Comment.builder()
+            .postId(1)
+            .id(2)
+            .name("quo vero reiciendis velit similique earum")
+            .email("Jayne_Kuhic@sydney.com")
+            .body(
+                "est natus enim nihil est dolore omnis voluptatem numquam\net omnis occaecati quod ullam at\nvoluptatem error expedita pariatur\nnihil sint nostrum voluptatem reiciendis et")
+            .build();
+        return new CommentListResponse(List.of(expectedComment));
     }
 
 }

@@ -4,6 +4,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.assertj.core.api.Assertions;
+import org.example.dataprovider.post.PostDataProvider;
 import org.example.model.PostListResponse;
 import org.example.model.PostResponse;
 import org.example.tests.BaseTest;
@@ -21,13 +22,7 @@ public class FetchPostTest extends BaseTest {
     public void getPostTest() {
         // given
         int id = 1;
-        PostResponse expectedResponse = PostResponse.builder()
-            .userId(1)
-            .id(1)
-            .title("sunt aut facere repellat provident occaecati excepturi optio reprehenderit")
-            .body(
-                "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto")
-            .build();
+        PostResponse expectedResponse = PostDataProvider.providePostForId1();
 
         // when
         PostResponse postResponse = postController.getPostById(id);

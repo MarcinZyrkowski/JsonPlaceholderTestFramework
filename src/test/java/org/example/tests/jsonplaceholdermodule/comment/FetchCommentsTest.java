@@ -3,10 +3,8 @@ package org.example.tests.jsonplaceholdermodule.comment;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import java.util.List;
-import org.assertj.core.api.Assertions;
-import org.example.dataprovider.comments.CommentsDataProvider;
-import org.example.model.Comment;
+import org.example.assertions.CommentAssertions;
+import org.example.dataprovider.comment.CommentDataProvider;
 import org.example.model.CommentListResponse;
 import org.example.tests.BaseTest;
 import org.junit.jupiter.api.DisplayName;
@@ -24,26 +22,14 @@ public class FetchCommentsTest extends BaseTest {
         // given
         int postId = 1;
         int id = 2;
-
-        Comment expectedComment = Comment.builder()
-            .postId(postId)
-            .id(id)
-            .name("quo vero reiciendis velit similique earum")
-            .email("Jayne_Kuhic@sydney.com")
-            .body(
-                "est natus enim nihil est dolore omnis voluptatem numquam\net omnis occaecati quod ullam at\nvoluptatem error expedita pariatur\nnihil sint nostrum voluptatem reiciendis et")
-            .build();
-        CommentListResponse expectedCommentsListResponse = new CommentListResponse(
-            List.of(expectedComment));
+        CommentListResponse expectedCommentsListResponse = CommentDataProvider.provideCommentsForPostId1AndId2();
 
         // when
         CommentListResponse commentListResponse = commentController.getCommentsByPostIdAndId(postId,
             id);
 
         // then
-        Assertions.assertThat(commentListResponse)
-            .withFailMessage("Response is different than expected")
-            .isEqualTo(expectedCommentsListResponse);
+        CommentAssertions.verifyCommentList(commentListResponse, expectedCommentsListResponse);
     }
 
     @Test
@@ -52,15 +38,13 @@ public class FetchCommentsTest extends BaseTest {
     public void getCommentsByPostIdTest() {
         // given
         int postId = 1;
-        CommentListResponse expectedCommentsListResponse = CommentsDataProvider.getCommentsForPostId1();
+        CommentListResponse expectedCommentsListResponse = CommentDataProvider.provideCommentsForPostId1();
 
         // when
         CommentListResponse commentListResponse = commentController.getCommentsByPostId(postId);
 
         // then
-        Assertions.assertThat(commentListResponse)
-            .withFailMessage("Response is different than expected")
-            .isEqualTo(expectedCommentsListResponse);
+        CommentAssertions.verifyCommentList(commentListResponse, expectedCommentsListResponse);
     }
 
     @Test
@@ -69,15 +53,13 @@ public class FetchCommentsTest extends BaseTest {
     public void getCommentsForPostIdTest() {
         // given
         int postId = 1;
-        CommentListResponse expectedCommentsListResponse = CommentsDataProvider.getCommentsForPostId1();
+        CommentListResponse expectedCommentsListResponse = CommentDataProvider.provideCommentsForPostId1();
 
         // when
         CommentListResponse commentListResponse = commentController.getCommentsForPostId(postId);
 
         // then
-        Assertions.assertThat(commentListResponse)
-            .withFailMessage("Response is different than expected")
-            .isEqualTo(expectedCommentsListResponse);
+        CommentAssertions.verifyCommentList(commentListResponse, expectedCommentsListResponse);
     }
 
 }

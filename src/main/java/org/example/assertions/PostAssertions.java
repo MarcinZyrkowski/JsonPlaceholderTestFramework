@@ -16,7 +16,7 @@ public class PostAssertions {
             .usingRecursiveComparison()
             .ignoringFields("id")
             .as("Post request: \n" + JsonConverter.serializePojo(postRequest)
-                + "\n Post response \n" + JsonConverter.serializePojo(postResponse))
+                + "\n Post response: \n" + JsonConverter.serializePojo(postResponse))
             .withFailMessage("There is mismatch between request and response")
             .isEqualTo(postResponse);
     }
