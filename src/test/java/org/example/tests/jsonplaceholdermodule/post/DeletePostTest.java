@@ -3,7 +3,7 @@ package org.example.tests.jsonplaceholdermodule.post;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import org.assertj.core.api.Assertions;
+import org.example.assertions.PostAssertions;
 import org.example.tests.BaseTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,9 +24,7 @@ public class DeletePostTest extends BaseTest {
         String response = postController.deletePost(id);
 
         // then
-        Assertions.assertThat(response)
-            .withFailMessage("Delete should return empty json object: {}")
-            .isEqualTo("{}");
+        PostAssertions.verifyPostIsDeleted(response);
     }
 
 }

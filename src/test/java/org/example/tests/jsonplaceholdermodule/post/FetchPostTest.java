@@ -4,6 +4,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.assertj.core.api.Assertions;
+import org.example.assertions.PostAssertions;
 import org.example.dataprovider.post.PostDataProvider;
 import org.example.model.PostListResponse;
 import org.example.model.PostResponse;
@@ -44,9 +45,7 @@ public class FetchPostTest extends BaseTest {
         PostListResponse postListResponse = postController.getAllPosts();
 
         // then
-        Assertions.assertThat(postListResponse.posts().size())
-            .withFailMessage("Actual number of all posts is different than actual")
-            .isEqualTo(expectedNumberOfAllPosts);
+        PostAssertions.verifyPostResponseListSize(postListResponse, expectedNumberOfAllPosts);
     }
 
 }

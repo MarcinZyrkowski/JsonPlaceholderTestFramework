@@ -3,7 +3,6 @@ package org.example.tests.jsonplaceholdermodule.post;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import org.assertj.core.api.Assertions;
 import org.example.assertions.PostAssertions;
 import org.example.generators.PostRequestGenerator;
 import org.example.model.PostRequest;
@@ -30,9 +29,7 @@ public class UpdatePostTest extends BaseTest {
 
         // then
         PostAssertions.verifyPostRequestAndResponseAreEquals(postRequest, postResponse);
-        Assertions.assertThat(postResponse.id())
-            .withFailMessage("Id should be updated")
-            .isEqualTo(id);
+        PostAssertions.verifyPostResponseId(postResponse, id);
     }
 
 }
