@@ -2,9 +2,13 @@ package org.example.controller;
 
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
+import java.util.List;
 import org.apache.http.HttpStatus;
 import org.assertj.core.api.Assertions;
+import org.assertj.core.util.Arrays;
+import org.example.assertions.HttpAssertions;
 import org.example.client.JsonPlaceholderClient;
+import org.example.model.PostListResponse;
 import org.example.model.PostRequest;
 import org.example.model.PostResponse;
 
@@ -15,21 +19,24 @@ public class JsonPlaceholderController {
     @Step("Get Post by Id: {id}")
     public PostResponse getPostById(int id) {
         Response response = jsonPlaceholderClient.getPostById(id);
-
-        Assertions.assertThat(response.getStatusCode())
-            .withFailMessage("Status code should be 200 but was: " + response.getStatusCode())
-            .isEqualTo(HttpStatus.SC_OK);
+        HttpAssertions.statusResponseIsOk(response);
 
         return response.as(PostResponse.class);
+    }
+
+    @Step("Get all Posts")
+    public PostListResponse getAllPosts() {
+        Response response = jsonPlaceholderClient.getAllPosts();
+        HttpAssertions.statusResponseIsOk(response);
+
+        PostResponse[] postResponseArray = response.as(PostResponse[].class);
+        return new PostListResponse(List.of(postResponseArray));
     }
 
     @Step("Publish Post")
     public PostResponse publishPost(PostRequest postRequest) {
         Response response = jsonPlaceholderClient.postPost(postRequest);
-
-        Assertions.assertThat(response.getStatusCode())
-            .withFailMessage("Status code should be 200 but was: " + response.getStatusCode())
-            .isEqualTo(HttpStatus.SC_CREATED);
+        HttpAssertions.statusResponseIsCreated(response);
 
         return response.as(PostResponse.class);
     }
@@ -37,10 +44,7 @@ public class JsonPlaceholderController {
     @Step("Delete Post by Id: {id}")
     public String deletePost(int id) {
         Response response = jsonPlaceholderClient.deletePost(id);
-
-        Assertions.assertThat(response.getStatusCode())
-            .withFailMessage("Status code should be 200 but was: " + response.getStatusCode())
-            .isEqualTo(HttpStatus.SC_OK);
+        HttpAssertions.statusResponseIsOk(response);
 
         return response.body().asString();
     }
@@ -48,10 +52,7 @@ public class JsonPlaceholderController {
     @Step("Update Post")
     public PostResponse updatePost(int id, PostRequest postRequest) {
         Response response = jsonPlaceholderClient.putPost(id, postRequest);
-
-        Assertions.assertThat(response.getStatusCode())
-            .withFailMessage("Status code should be 200 but was: " + response.getStatusCode())
-            .isEqualTo(HttpStatus.SC_OK);
+        HttpAssertions.statusResponseIsOk(response);
 
         return response.as(PostResponse.class);
     }

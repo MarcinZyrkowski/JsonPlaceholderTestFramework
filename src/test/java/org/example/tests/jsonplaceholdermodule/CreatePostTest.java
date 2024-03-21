@@ -2,7 +2,7 @@ package org.example.tests.jsonplaceholdermodule;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
-import org.example.assertions.HttpAssertions;
+import org.example.assertions.PostAssertions;
 import org.example.generators.PostRequestGenerator;
 import org.example.model.PostRequest;
 import org.example.model.PostResponse;
@@ -14,8 +14,8 @@ import org.junit.jupiter.api.Test;
 public class CreatePostTest extends BaseTest {
 
     @Test
-    @DisplayName("Publish Post Test")
-    @Description("Publish Post Test")
+    @DisplayName("Publish post")
+    @Description("Publish post")
     public void publishPostTest() {
         // given
         PostRequest postRequest = PostRequestGenerator.generateRandom();
@@ -24,7 +24,7 @@ public class CreatePostTest extends BaseTest {
         PostResponse postResponse = jsonPlaceholderController.publishPost(postRequest);
 
         // then
-        HttpAssertions.verifyPostRequestAndResponseAreEquals(postRequest, postResponse);
+        PostAssertions.verifyPostRequestAndResponseAreEquals(postRequest, postResponse);
     }
 
 }

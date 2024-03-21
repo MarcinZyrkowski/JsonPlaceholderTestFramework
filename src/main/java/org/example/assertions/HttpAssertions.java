@@ -1,22 +1,24 @@
 package org.example.assertions;
 
+import io.restassured.response.Response;
+import org.apache.http.HttpStatus;
 import org.assertj.core.api.Assertions;
-import org.example.model.PostRequest;
-import org.example.model.PostResponse;
-import org.example.utils.JsonConverter;
 
 public class HttpAssertions {
 
-    public static void verifyPostRequestAndResponseAreEquals(PostRequest postRequest,
-        PostResponse postResponse) {
+    public static void validateResponseStatusCode(Response response, int httpStatusCode) {
+        Assertions.assertThat(response.getStatusCode())
+            .withFailMessage(
+                "Status code should be " + httpStatusCode + " but was: " + response.getStatusCode())
+            .isEqualTo(httpStatusCode);
+    }
 
-        Assertions.assertThat(postRequest)
-            .usingRecursiveComparison()
-            .ignoringFields("id")
-            .as("Post request: \n" + JsonConverter.serializePojo(postRequest)
-                + "\n Post response \n" + JsonConverter.serializePojo(postResponse))
-            .withFailMessage("There is mismatch between request and response")
-            .isEqualTo(postResponse);
+    public static void statusResponseIsOk(Response response) {
+        validateResponseStatusCode(response, HttpStatus.SC_OK);
+    }
+
+    public static void statusResponseIsCreated(Response response) {
+        validateResponseStatusCode(response, HttpStatus.SC_CREATED);
     }
 
 }

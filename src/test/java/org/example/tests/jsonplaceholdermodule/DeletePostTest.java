@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 public class DeletePostTest extends BaseTest {
 
     @Test
-    @DisplayName("Delete Post Test")
-    @Description("Delete Post Test")
+    @DisplayName("Delete post")
+    @Description("Delete post")
     public void publishPostTest() {
         // given
         int id = random.nextInt(100);

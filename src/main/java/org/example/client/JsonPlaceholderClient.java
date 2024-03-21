@@ -14,6 +14,11 @@ public class JsonPlaceholderClient extends RestClient {
             .get(POST_BY_ID);
     }
 
+    public Response getAllPosts() {
+        return basicRequestSpecification()
+            .get(POSTS);
+    }
+
     public Response postPost(PostRequest postRequest) {
         return basicRequestSpecification()
             .body(postRequest)

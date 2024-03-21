@@ -3,6 +3,7 @@ package org.example.tests.jsonplaceholdermodule;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import org.assertj.core.api.Assertions;
+import org.example.model.PostListResponse;
 import org.example.model.PostResponse;
 import org.example.tests.BaseTest;
 import org.junit.jupiter.api.DisplayName;
@@ -12,8 +13,8 @@ import org.junit.jupiter.api.Test;
 public class FetchPostTest extends BaseTest {
 
     @Test
-    @DisplayName("Get Post Test")
-    @Description("Get Post Test")
+    @DisplayName("Get post")
+    @Description("Get post")
     public void getPostTest() {
         // given
         int id = 1;
@@ -32,6 +33,21 @@ public class FetchPostTest extends BaseTest {
         Assertions.assertThat(postResponse)
             .withFailMessage("Response is different than expected")
             .isEqualTo(expectedResponse);
+    }
+
+    @Test
+    @DisplayName("Get all posts")
+    public void getAllPostsTest() {
+        // given
+        int expectedNumberOfAllPosts = 100;
+
+        // when
+        PostListResponse postListResponse = jsonPlaceholderController.getAllPosts();
+
+        // then
+        Assertions.assertThat(postListResponse.list().size())
+            .withFailMessage("Actual number of all posts is different than actual")
+            .isEqualTo(expectedNumberOfAllPosts);
     }
 
 }
