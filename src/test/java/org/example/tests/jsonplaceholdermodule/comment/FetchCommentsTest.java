@@ -1,6 +1,7 @@
 package org.example.tests.jsonplaceholdermodule.comment;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import java.util.List;
 import org.assertj.core.api.Assertions;
@@ -11,7 +12,9 @@ import org.example.tests.BaseTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@Epic("Comment")
 @Feature("Fetch comment")
+@DisplayName("Fetch Comment")
 public class FetchCommentsTest extends BaseTest {
 
     @Test

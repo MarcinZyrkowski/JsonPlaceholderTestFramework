@@ -1,11 +1,13 @@
 package org.example.dataprovider.comments;
 
+import io.qameta.allure.Step;
 import java.util.List;
 import org.example.model.Comment;
 import org.example.model.CommentListResponse;
 
 public class CommentsDataProvider {
 
+    @Step("Provide comments for post id = 1")
     public static CommentListResponse getCommentsForPostId1() {
         List<Comment> comments = List.of(
             Comment.builder()

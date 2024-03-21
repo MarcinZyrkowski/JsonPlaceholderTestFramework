@@ -1,6 +1,7 @@
 package org.example.tests.jsonplaceholdermodule.post;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.assertj.core.api.Assertions;
 import org.example.model.PostListResponse;
@@ -9,7 +10,9 @@ import org.example.tests.BaseTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@Epic("Post")
 @Feature("Get Post")
+@DisplayName("Fetch Post Test")
 public class FetchPostTest extends BaseTest {
 
     @Test

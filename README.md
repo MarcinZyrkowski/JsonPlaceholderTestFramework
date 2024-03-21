@@ -1,5 +1,5 @@
 ## Goal
-The goal of the project is to build custom test framework which test open API page:
+The goal of the project is to build custom test framework which tests open API page:
 https://jsonplaceholder.typicode.com/
 
 
@@ -27,4 +27,4 @@ or use:
 Report will be generated and you can open it by opening: `./build/reports/allure-report/allureReport/index.html`
 
 #### Note 
-remember use `gradle clean` to not duplicate results in allure report
+remember to use `gradle clean` to not duplicate results in allure report
