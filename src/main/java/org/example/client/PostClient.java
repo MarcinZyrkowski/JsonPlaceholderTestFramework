@@ -38,4 +38,11 @@ public class PostClient extends RestClient {
             .put(POST_BY_ID);
     }
 
+    public Response patchPost(int id, PostRequest postRequest) {
+        return basicRequestSpecification()
+            .body(postRequest)
+            .pathParam("id", id)
+            .patch(POST_BY_ID);
+    }
+
 }

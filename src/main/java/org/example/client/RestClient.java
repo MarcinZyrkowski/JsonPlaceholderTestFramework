@@ -6,14 +6,14 @@ import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
-import org.example.config.Environment;
+import org.example.config.Configuration;
 
 public class RestClient {
 
     public RequestSpecification basicRequestSpecification() {
         return RestAssured.given()
             .contentType(ContentType.JSON)
-            .baseUri(Environment.QA.getBASE_URL())
+            .baseUri(Configuration.CONFIG.baseUrl())
             .filter(new AllureRestAssured())
             .filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
     }

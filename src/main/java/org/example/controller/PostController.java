@@ -54,4 +54,12 @@ public class PostController {
         return response.as(PostResponse.class);
     }
 
+    @Step("Patch Post")
+    public PostResponse patchPost(int id, PostRequest postRequest) {
+        Response response = postClient.patchPost(id, postRequest);
+        HttpAssertions.statusResponseIsOk(response);
+
+        return response.as(PostResponse.class);
+    }
+
 }
