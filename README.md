@@ -4,13 +4,19 @@ https://jsonplaceholder.typicode.com/
 
 
 ## How to run tests
-1. Clean tests 
+1. Clean tests reports from previous run/s 
 `gradle clean`
 
-2. Execute tests 
-`gradle test`
+2. Build project without test execution
+`gradle build -x test`
+
+3. Execute tests by running regression
+`gradle test --tests "org.example.suites.RegressionSuite"`
 
 or by running any `suite` file.
+
+It is also possible to run tests by tag:
+`gradle test -Dtags=full` however all tests will be executed (all regression and all suites) which means test duplication
 
 ## How to generate Allure report
 Once tests are executed:

@@ -11,7 +11,7 @@ import org.example.tests.BaseTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@Epic("Patch")
+@Epic("Post")
 @Feature("Patch Post")
 @DisplayName("Patch Post Test")
 public class PatchPostTest extends BaseTest {
