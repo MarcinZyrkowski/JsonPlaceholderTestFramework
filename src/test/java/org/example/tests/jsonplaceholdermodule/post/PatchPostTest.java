@@ -35,7 +35,6 @@ public class PatchPostTest extends BaseTest {
         // when
         PostResponse postResponse = postController.patchPost(id, postRequest);
 
-
         // then
         PostAssertions.verifyPostRequestAndResponseAreEquals(postRequest, postResponse);
         PostAssertions.verifyPostResponseId(postResponse, id);
