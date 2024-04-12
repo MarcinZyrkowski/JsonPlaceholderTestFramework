@@ -16,7 +16,7 @@ public class PostRequestGenerator {
         return PostRequest.builder()
             .userId(RANDOM.nextInt(100))
             .title(FAKER.book().title())
-            .body(RandomStringUtils.random(30, true, false))
+            .body(RandomStringUtils.randomAlphabetic(30))
             .build();
     }
 
