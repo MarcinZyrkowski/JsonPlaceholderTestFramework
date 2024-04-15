@@ -61,7 +61,7 @@ jobs:
     - name: publish test report build
       uses: actions/upload-artifact@v2
       with:
-        name: Test Report
+        name: Test Report - build
         path: build
 
 #    - name: Publish test report
