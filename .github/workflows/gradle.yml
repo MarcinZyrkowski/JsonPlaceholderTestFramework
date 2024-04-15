@@ -27,8 +27,6 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    # Configure Gradle for optimal use in GiHub Actions, including caching of downloaded dependencies.
-    # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
     - name: setup gradle
       uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
 
@@ -38,6 +36,14 @@ jobs:
     - name: run tests
       run: ./gradlew test --tests "org.example.suites.RegressionSuite"
 
+    - name: Load test report history
+      uses: actions/checkout@v3
+      if: always()
+      continue-on-error: true
+      with:
+        ref: master
+        path: master
+
     - name: Build test report
       uses: simple-elf/allure-report-action@v1.7
       if: always()
@@ -46,21 +52,10 @@ jobs:
         allure_history: allure-history
         allure_results: build/allure-results
 
-    - name: Publish test report
-      uses: peaceiris/actions-master@v3
-      if: always()
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: master
-        publish_dir: allure-history
-
-#    - name: generate report
-#      run: ./gradlew allureReport
-
-#    - name: publish tests report
-#      uses: actions/upload-artifact@v3
+#    - name: Publish test report
+#      uses: peaceiris/actions-gh-pages@v3
 #      if: always()
 #      with:
-#        name: Test Report
-#        path: build
-#        if-no-files-found: warn
+#        github_token: ${{ secrets.GITHUB_TOKEN }}
+#        publish_branch: gh-pages
+#        publish_dir: allure-history
