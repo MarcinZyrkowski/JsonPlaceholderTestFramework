@@ -52,22 +52,10 @@ jobs:
         allure_history: allure-history
         allure_results: build/allure-results
 
-    - name: publish test report allure-history
-      uses: actions/upload-artifact@v2
+    - name: Publish test report
+      uses: peaceiris/actions-gh-pages@v3
+      if: always()
       with:
-        name: Test Report
-        path: allure-history
-
-    - name: publish test report build
-      uses: actions/upload-artifact@v2
-      with:
-        name: Test Report - build
-        path: build
-
-#    - name: Publish test report
-#      uses: peaceiris/actions-gh-pages@v3
-#      if: always()
-#      with:
-#        github_token: ${{ secrets.GITHUB_TOKEN }}
-#        publish_branch: gh-pages
-#        publish_dir: allure-history
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: master
+        publish_dir: allure-history
