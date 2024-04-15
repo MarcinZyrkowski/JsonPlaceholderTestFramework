@@ -36,6 +36,9 @@ jobs:
     - name: Clean tests Result
       run: ./gradlew clean
 
+    - name: Clean build
+      run: ./gradlew build -x test
+
     - name: Run tests
       run: ./gradlew test --tests "org.example.suites.RegressionSuite"
 
@@ -62,6 +65,12 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_branch: master
         publish_dir: allure-history
+        name: artifact
+        path: build/allure-results
+        if-no-files-found: warn
+
+
+
 
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
     # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
