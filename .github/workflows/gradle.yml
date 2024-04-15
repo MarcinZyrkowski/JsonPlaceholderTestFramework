@@ -24,13 +24,13 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: setup gradle
+    - name: Setup gradle
       uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
 
-    - name: clean tests result
+    - name: Clean tests result
       run: ./gradlew clean
 
-    - name: run tests
+    - name: Run tests
       run: ./gradlew test --tests "org.example.suites.RegressionSuite"
 
     - name: Load test report history
