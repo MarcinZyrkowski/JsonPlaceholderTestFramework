@@ -15,7 +15,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -36,11 +35,14 @@ jobs:
     - name: clean tests result
       run: ./gradlew clean
 
-    - name: clean assemble
+    - name: assemble
       run: ./gradlew assemble
 
     - name: run tests
       run: ./gradlew test --tests "org.example.suites.RegressionSuite"
+
+    - name: run tests
+      run: ./gradlew test
 
     - name: generate report
       run: ./gradlew allureReport
@@ -49,51 +51,6 @@ jobs:
       uses: actions/upload-artifact@v3
       if: always()
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: master
-        publish_dir: allure-history
         name: Test Report
         path: build/reports/allure-report
         if-no-files-found: warn
-
-#    - name: Load test report history
-#      uses: actions/checkout@v3
-#      if: always()
-#      continue-on-error: true
-#      with:
-#        ref: master
-#        path: master
-#
-#    - name: Build test report
-#      uses: simple-elf/allure-report-action@v1.7
-#      if: always()
-#      with:
-#        master: master
-#        allure_history: allure-history
-#        allure_results: build/allure-results
-#
-#    - name: Publish test report
-#      uses: actions/upload-artifact@v3
-#      if: always()
-#      with:
-#        github_token: ${{ secrets.GITHUB_TOKEN }}
-#        publish_branch: master
-#        publish_dir: allure-history
-#        name: Test Report
-#        path: build/allure-results
-#        if-no-files-found: warn
-
-
-
-
-    # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
-    # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
-    #
-    # - name: Setup Gradle
-    #   uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
-    #   with:
-    #     gradle-version: '8.5'
-    #
-    # - name: Build with Gradle 8.5
-    #   run: gradle build
-
