@@ -1,7 +1,15 @@
 name: GitHub Action Test Run
 
 on:
-  [push]
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        description: 'Environment'
+        required: true
+        options:
+          - DEV
+          - QA
 
 jobs:
   build:
@@ -10,62 +18,46 @@ jobs:
       contents: write
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
 
-    # setup
-    - name: Setup gradle
-      uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
+      # setup
+      - name: Setup gradle
+        uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
 
-    # clean test
-    - name: Clean tests result
-      run: ./gradlew clean
+      # clean test
+      - name: Clean tests result
+        run: ./gradlew clean
 
-    # run tests
-    - name: Run tests
-      run: ./gradlew test --tests "org.example.suites.RegressionSuite"
+      # run tests
+      - name: Run tests
+        run: ./gradlew test --tests "org.example.suites.RegressionSuite"
 
-    # allure report
-    - name: Build test report
-      uses: simple-elf/allure-report-action@v1.7
-      if: always()
-      with:
-        master: master
-        allure_history: allure-history
-        allure_results: build/allure-results
+      # allure report
+      - name: Load test report history
+        uses: actions/checkout@v3
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
 
-    # Upload Gradle Build Report
-    - name: Upload gradle build reports
-      if: always()
-      uses: actions/upload-artifact@v3
-      with:
-        name: test-report
-        path: allure-history
+      - name: Build test report
+        uses: simple-elf/allure-report-action@v1.7
+        if: always()
+        with:
+          gh_pages: gh-pages
+          allure_history: allure-history
+          allure_results: build/allure-results
 
-#    - name: Load test report history
-#      uses: actions/checkout@v3
-#      if: always()
-#      continue-on-error: true
-#      with:
-#        ref: gh-pages
-#        path: gh-pages
-#
-#    - name: Build test report
-#      uses: simple-elf/allure-report-action@v1.7
-#      if: always()
-#      with:
-#        gh_pages: gh-pages
-#        allure_history: allure-history
-#        allure_results: build/allure-results
-#
-#    - name: Publish test report
-#      uses: peaceiris/actions-gh-pages@v3
-#      if: always()
-#      with:
-#        github_token: ${{ secrets.GITHUB_TOKEN }}
-#        publish_branch: gh-pages
-#        publish_dir: allure-history
+      - name: Publish test report
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
