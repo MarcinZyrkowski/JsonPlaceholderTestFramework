@@ -33,19 +33,19 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
 
-    - name: Clean tests Result
+    - name: clean tests result
       run: ./gradlew clean
 
-    - name: Clean build
-      run: ./gradlew build -x test
+    - name: clean assemble
+      run: ./gradlew assemble
 
-    - name: Run tests
+    - name: run tests
       run: ./gradlew test --tests "org.example.suites.RegressionSuite"
 
-    - name: Generate Report
-      run: .gradlew gradle allureReport
+    - name: generate report
+      run: ./gradlew gradle allureReport
 
-    - name: Publish test report
+    - name: publish tests report
       uses: actions/upload-artifact@v3
       if: always()
       with:
