@@ -52,17 +52,10 @@ jobs:
         allure_history: allure-history
         allure_results: build/allure-results
 
-    - name: Upload gradle build reports
+    - name: Publish test report
+      uses: peaceiris/actions-gh-pages@v3
       if: always()
-      uses: actions/upload-artifact@v3
       with:
-        name: build-reports
-        path: allure-history
-
-#    - name: Publish test report
-#      uses: peaceiris/actions-gh-pages@v3
-#      if: always()
-#      with:
-#        github_token: ${{ secrets.GITHUB_TOKEN }}
-#        publish_branch: master
-#        publish_dir: allure-history
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: master
+        publish_dir: allure-history
