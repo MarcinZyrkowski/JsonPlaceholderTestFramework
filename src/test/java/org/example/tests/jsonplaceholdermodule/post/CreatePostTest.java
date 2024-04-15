@@ -30,13 +30,6 @@ public class CreatePostTest extends BaseTest {
 
         // then
         PostAssertions.verifyPostRequestAndResponseAreEquals(postRequest, postResponse);
-
-        print(LocalDateTime.now().toString());
-    }
-
-    @Step("Published: {string}")
-    public void print(String string){
-        System.out.println(string);
     }
 
 }
