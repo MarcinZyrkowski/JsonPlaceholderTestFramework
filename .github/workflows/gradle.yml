@@ -35,19 +35,32 @@ jobs:
     - name: clean tests result
       run: ./gradlew clean
 
-    - name: assemble
-      run: ./gradlew assemble
-
     - name: run tests
       run: ./gradlew test --tests "org.example.suites.RegressionSuite"
+
+    - name: Build test report
+      uses: simple-elf/allure-report-action@v1.7
+      if: always()
+      with:
+        master: master
+        allure_history: allure-history
+        allure_results: build/allure-results
+
+    - name: Publish test report
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: master
+        publish_dir: allure-history
 
     - name: generate report
       run: ./gradlew allureReport
 
-    - name: publish tests report
-      uses: actions/upload-artifact@v3
-      if: always()
-      with:
-        name: Test Report
-        path: build
-        if-no-files-found: warn
+#    - name: publish tests report
+#      uses: actions/upload-artifact@v3
+#      if: always()
+#      with:
+#        name: Test Report
+#        path: build
+#        if-no-files-found: warn
