@@ -42,7 +42,6 @@ jobs:
       uses: simple-elf/allure-report-action@v1.7
       if: always()
       with:
-        master: master
         allure_history: allure-history
         allure_results: build/allure-results
 
@@ -53,9 +52,12 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_branch: master
         publish_dir: allure-history
+        name: Test Report
+        path: build
+        if-no-files-found: warn
 
-    - name: generate report
-      run: ./gradlew allureReport
+#    - name: generate report
+#      run: ./gradlew allureReport
 
 #    - name: publish tests report
 #      uses: actions/upload-artifact@v3
