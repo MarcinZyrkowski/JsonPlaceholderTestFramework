@@ -42,21 +42,8 @@ jobs:
     - name: Run tests
       run: ./gradlew test --tests "org.example.suites.RegressionSuite"
 
-    - name: Load test report history
-      uses: actions/checkout@v3
-      if: always()
-      continue-on-error: true
-      with:
-        ref: master
-        path: master
-
-    - name: Build test report
-      uses: simple-elf/allure-report-action@v1.7
-      if: always()
-      with:
-        master: master
-        allure_history: allure-history
-        allure_results: build/allure-results
+    - name: Generate Report
+      run: .gradlew gradle allureReport
 
     - name: Publish test report
       uses: actions/upload-artifact@v3
@@ -65,9 +52,36 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_branch: master
         publish_dir: allure-history
-        name: artifact
-        path: build/allure-results
+        name: Test Report
+        path: build/reports/allure-report
         if-no-files-found: warn
+
+#    - name: Load test report history
+#      uses: actions/checkout@v3
+#      if: always()
+#      continue-on-error: true
+#      with:
+#        ref: master
+#        path: master
+#
+#    - name: Build test report
+#      uses: simple-elf/allure-report-action@v1.7
+#      if: always()
+#      with:
+#        master: master
+#        allure_history: allure-history
+#        allure_results: build/allure-results
+#
+#    - name: Publish test report
+#      uses: actions/upload-artifact@v3
+#      if: always()
+#      with:
+#        github_token: ${{ secrets.GITHUB_TOKEN }}
+#        publish_branch: master
+#        publish_dir: allure-history
+#        name: Test Report
+#        path: build/allure-results
+#        if-no-files-found: warn
 
 
 
