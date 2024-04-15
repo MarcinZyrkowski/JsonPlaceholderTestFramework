@@ -9,7 +9,7 @@ name: GitHub Action Test Run
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master", "gh-pages" ]
   pull_request:
     branches: [ "master" ]
 
