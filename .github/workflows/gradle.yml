@@ -38,6 +38,7 @@ jobs:
       if: always()
       continue-on-error: true
       with:
+        token: ${{ secrets.GH_TOKEN }}
         ref: gh-pages
         path: gh-pages
 
