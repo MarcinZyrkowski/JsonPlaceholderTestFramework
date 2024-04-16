@@ -45,14 +45,14 @@ It is also possible to run tests by tag:
 
 5. Allure report will be generated and uploaded as an artifact
 
-## How to generate Allure report
+## How to generate Allure report locally
 Once tests are executed:
 
-Generate report
+### 1. Generate report using allure
 `allure serve build/allure-results`
 
-or use gradle allure plugin:
-`gradle allureServe`
+### 2. Use gradle allure plugin:
+`gradle allureServe` with live server
 
 or use:
 `gradle allureReport`
