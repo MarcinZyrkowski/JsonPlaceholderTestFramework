@@ -38,26 +38,13 @@ jobs:
         continue-on-error: true
         run: env=${{ inputs.environment }} ./gradlew test --tests "org.example.suites.RegressionSuite"
 
-      # Allure test
-      - name: Clean tests result
+      # allure generate allure report
+      - name: Generate allure report
         run: ./gradlew allureReport
 
-#      # allure check
-#      - name: Check if Allure is installed
-#        run: |
-#          if ! command -v allure &> /dev/null
-#          then
-#            sudo apt-get update
-#            sudo apt-get install allure
-#          fi
-#
-#      # allure report
-#      - name: Generate Allure report
-#        run: |
-#          allure generate --results-dir build/allure-results --report-dir build/allure-report
-#
+      # upload artifact
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
           name: allure-report
-          path: build
+          path: build/reports/allure-report
