@@ -1,4 +1,4 @@
-name: GitHub Action Test Run - Report in gh-pages
+name: GitHub Action Test Run
 
 on:
   workflow_dispatch:
@@ -39,26 +39,12 @@ jobs:
         run: env=${{ inputs.environment }} ./gradlew test --tests "org.example.suites.RegressionSuite"
 
       # allure report
-      - name: Load test report history
-        uses: actions/checkout@v3
-        if: always()
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages
+      - name: Generate Allure report
+        run: |
+          allure generate --results-dir build/allure-results --report-dir build/allure-report
 
-      - name: Build test report
-        uses: simple-elf/allure-report-action@v1.7
-        if: always()
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
         with:
-          gh_pages: gh-pages
-          allure-history: allure-history
-          allure_results: build/allure-results
-
-      - name: Publish test report
-        uses: peaceiris/actions-gh-pages@v3
-        if: always()
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: allure-history
+          name: allure-report
+          path: build/allure-report
