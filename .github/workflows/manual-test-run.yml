@@ -46,5 +46,5 @@ jobs:
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: allure-report
-          path: build/reports/allure-report
+          name: Reports
+          path: build/reports
