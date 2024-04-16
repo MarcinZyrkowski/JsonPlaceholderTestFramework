@@ -8,8 +8,8 @@ on:
         description: 'Environment'
         required: true
         options:
-          - dev
           - qa
+          - dev
 
 jobs:
   build:

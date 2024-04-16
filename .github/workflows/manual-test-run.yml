@@ -8,8 +8,8 @@ on:
         description: 'Environment'
         required: true
         options:
-          - dev
           - qa
+          - dev
 
 jobs:
   build:
@@ -43,9 +43,9 @@ jobs:
         run: |
           if ! command -v allure &> /dev/null
           then
-           sudo apt-add-repository ppa:qameta/allure
-           sudo apt-get update 
-           sudo apt-get install allure
+           wget https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.17.0/allure-commandline-2.17.0.zip
+           unzip allure-commandline-2.17.0.zip
+           export PATH=$PATH:/path/to/allure/bin
           fi
 
       # allure report
