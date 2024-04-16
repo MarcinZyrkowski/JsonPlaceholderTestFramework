@@ -40,10 +40,12 @@ jobs:
 
       # allure generate allure report
       - name: Generate allure report
+        if: always()
         run: ./gradlew allureReport
 
       # upload artifact
       - name: Archive artifacts
+        if: always()
         uses: actions/upload-artifact@v2
         with:
           name: Reports
