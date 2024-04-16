@@ -8,8 +8,8 @@ on:
         description: 'Environment'
         required: true
         options:
-          - DEV
-          - QA
+          - dev
+          - qa
 
 jobs:
   build:
@@ -35,7 +35,7 @@ jobs:
 
       # run tests
       - name: Run tests
-        run: ./gradlew test --tests "org.example.suites.RegressionSuite"
+        run: env=${{ inputs.environment }} ./gradlew test --tests "org.example.suites.RegressionSuite"
 
       # allure report
       - name: Load test report history
