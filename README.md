@@ -34,6 +34,16 @@ It is also possible to run tests by tag:
 
 6. Verify report
 
+### 5. Using GitHub Actions v2
+1. Go to GitHub Actions
+
+2. Go to action: `GitHub Action Test Run`
+
+3. Set the environment (`dev` env is created to see all reports failed, on `qa` each test pass)
+
+4. Run workflow
+
+5. Allure report will be generated and uploaded as an artifact
 
 ## How to generate Allure report
 Once tests are executed:
