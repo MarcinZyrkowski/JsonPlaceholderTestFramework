@@ -31,11 +31,11 @@ jobs:
 
       # clean test
       - name: Clean tests result
-        continue-on-error: false
         run: ./gradlew clean
 
       # run tests
       - name: Run tests
+        continue-on-error: true
         run: env=${{ inputs.environment }} ./gradlew test --tests "org.example.suites.RegressionSuite"
 
       # allure report
