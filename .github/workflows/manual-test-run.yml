@@ -38,6 +38,16 @@ jobs:
         continue-on-error: true
         run: env=${{ inputs.environment }} ./gradlew test --tests "org.example.suites.RegressionSuite"
 
+      # allure check
+      - name: Check if Allure is installed
+        run: |
+          if ! command -v allure &> /dev/null
+          then
+           sudo apt-add-repository ppa:qameta/allure
+           sudo apt-get update 
+           sudo apt-get install allure
+          fi
+
       # allure report
       - name: Generate Allure report
         run: |
