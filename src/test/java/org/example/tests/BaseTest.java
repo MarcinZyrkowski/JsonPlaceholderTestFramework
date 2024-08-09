@@ -1,9 +1,10 @@
 package org.example.tests;
 
-import java.util.Random;
 import org.example.annotations.Full;
 import org.example.controller.CommentController;
 import org.example.controller.PostController;
+
+import java.util.Random;
 
 @Full
 public class BaseTest {

@@ -2,12 +2,13 @@ package org.example.controller;
 
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
-import java.util.List;
 import org.example.assertions.HttpAssertions;
 import org.example.client.PostClient;
 import org.example.model.PostListResponse;
 import org.example.model.PostRequest;
 import org.example.model.PostResponse;
+
+import java.util.List;
 
 public class PostController {
 

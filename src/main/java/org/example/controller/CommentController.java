@@ -2,11 +2,12 @@ package org.example.controller;
 
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
-import java.util.List;
 import org.example.assertions.HttpAssertions;
 import org.example.client.CommentClient;
 import org.example.model.Comment;
 import org.example.model.CommentListResponse;
+
+import java.util.List;
 
 public class CommentController {
 

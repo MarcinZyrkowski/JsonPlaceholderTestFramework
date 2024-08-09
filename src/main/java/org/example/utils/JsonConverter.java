@@ -1,8 +1,9 @@
 package org.example.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.Objects;
 import lombok.SneakyThrows;
+
+import java.util.Objects;
 
 public class JsonConverter {
 

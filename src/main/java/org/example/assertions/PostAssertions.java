@@ -11,37 +11,37 @@ public class PostAssertions {
 
     @Step("Verify Post Response and compare it to Post Request")
     public static void verifyPostRequestAndResponseAreEquals(PostRequest postRequest,
-        PostResponse postResponse) {
+                                                             PostResponse postResponse) {
 
         Assertions.assertThat(postRequest)
-            .usingRecursiveComparison()
-            .ignoringFields("id")
-            .as("Post request: \n" + JsonConverter.serializePojo(postRequest)
-                + "\n Post response: \n" + JsonConverter.serializePojo(postResponse))
-            .withFailMessage("There is mismatch between request and response")
-            .isEqualTo(postResponse);
+                .usingRecursiveComparison()
+                .ignoringFields("id")
+                .as("Post request: \n" + JsonConverter.serializePojo(postRequest)
+                        + "\n Post response: \n" + JsonConverter.serializePojo(postResponse))
+                .withFailMessage("There is mismatch between request and response")
+                .isEqualTo(postResponse);
     }
 
     @Step("Verify Post is deleted")
     public static void verifyPostIsDeleted(String response) {
         Assertions.assertThat(response)
-            .withFailMessage("Delete should return empty json object: {}")
-            .isEqualTo("{}");
+                .withFailMessage("Delete should return empty json object: {}")
+                .isEqualTo("{}");
     }
 
     @Step("Verify post response Id")
     public static void verifyPostResponseId(PostResponse postResponse, int id) {
         Assertions.assertThat(postResponse.id())
-            .withFailMessage("Id should be updated")
-            .isEqualTo(id);
+                .withFailMessage("Id should be updated")
+                .isEqualTo(id);
     }
 
     @Step("Verify post response list size")
     public static void verifyPostResponseListSize(PostListResponse postListResponse,
-        int expectedNumberOfAllPosts) {
+                                                  int expectedNumberOfAllPosts) {
         Assertions.assertThat(postListResponse.posts().size())
-            .withFailMessage("Actual number of all posts is different than actual")
-            .isEqualTo(expectedNumberOfAllPosts);
+                .withFailMessage("Actual number of all posts is different than actual")
+                .isEqualTo(expectedNumberOfAllPosts);
     }
 
 }

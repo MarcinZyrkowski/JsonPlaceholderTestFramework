@@ -27,10 +27,10 @@ public class PatchPostTest extends BaseTest {
         // we only want to modify title
         PostRequest postRequestTemplate = PostRequestGenerator.generateRandom();
         PostRequest postRequest = PostRequest.builder()
-            .userId(response.userId())
-            .title(postRequestTemplate.title())
-            .body(response.body())
-            .build();
+                .userId(response.userId())
+                .title(postRequestTemplate.title())
+                .body(response.body())
+                .build();
 
         // when
         PostResponse postResponse = postController.patchPost(id, postRequest);

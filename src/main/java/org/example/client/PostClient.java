@@ -10,39 +10,39 @@ public class PostClient extends RestClient {
 
     public Response getPostById(int id) {
         return basicRequestSpecification()
-            .pathParam("id", id)
-            .get(POST_BY_ID);
+                .pathParam("id", id)
+                .get(POST_BY_ID);
     }
 
     public Response getAllPosts() {
         return basicRequestSpecification()
-            .get(POSTS);
+                .get(POSTS);
     }
 
     public Response postPost(PostRequest postRequest) {
         return basicRequestSpecification()
-            .body(postRequest)
-            .post(POSTS);
+                .body(postRequest)
+                .post(POSTS);
     }
 
     public Response deletePost(int id) {
         return basicRequestSpecification()
-            .pathParam("id", id)
-            .delete(POST_BY_ID);
+                .pathParam("id", id)
+                .delete(POST_BY_ID);
     }
 
     public Response putPost(int id, PostRequest postRequest) {
         return basicRequestSpecification()
-            .body(postRequest)
-            .pathParam("id", id)
-            .put(POST_BY_ID);
+                .body(postRequest)
+                .pathParam("id", id)
+                .put(POST_BY_ID);
     }
 
     public Response patchPost(int id, PostRequest postRequest) {
         return basicRequestSpecification()
-            .body(postRequest)
-            .pathParam("id", id)
-            .patch(POST_BY_ID);
+                .body(postRequest)
+                .pathParam("id", id)
+                .patch(POST_BY_ID);
     }
 
 }

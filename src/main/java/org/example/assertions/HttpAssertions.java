@@ -9,9 +9,9 @@ public class HttpAssertions {
 
     public static void validateResponseStatusCode(Response response, int httpStatusCode) {
         Assertions.assertThat(response.getStatusCode())
-            .withFailMessage(
-                "Status code should be " + httpStatusCode + " but was: " + response.getStatusCode())
-            .isEqualTo(httpStatusCode);
+                .withFailMessage(
+                        "Status code should be " + httpStatusCode + " but was: " + response.getStatusCode())
+                .isEqualTo(httpStatusCode);
     }
 
     @Step("Status code was: 200")
