@@ -4,24 +4,24 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.example.assertions.PostAssertions;
-import org.example.generators.PostRequestGenerator;
 import org.example.model.PostRequest;
 import org.example.model.PostResponse;
 import org.example.tests.BaseTest;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 @Epic("Post")
 @Feature("Update Post")
 @DisplayName("Update Post Test")
 public class UpdatePostTest extends BaseTest {
 
-    @Test
+    @ParameterizedTest(name = "Update post")
     @DisplayName("Update post")
     @Description("Update post")
-    public void publishPostTest() {
+    @MethodSource("org.example.dataprovider.post.PostDataProvider#provideRandomPost")
+    public void publishPostTest(PostRequest postRequest) {
         int id = random.nextInt(100);
-        PostRequest postRequest = PostRequestGenerator.generateRandom();
 
         PostResponse postResponse = postController.updatePost(id, postRequest);
 
