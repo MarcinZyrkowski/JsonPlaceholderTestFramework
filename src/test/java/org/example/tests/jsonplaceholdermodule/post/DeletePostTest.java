@@ -17,13 +17,10 @@ public class DeletePostTest extends BaseTest {
     @DisplayName("Delete post")
     @Description("Delete post")
     public void publishPostTest() {
-        // given
         int id = random.nextInt(100);
 
-        // when
         String response = postController.deletePost(id);
 
-        // then
         PostAssertions.verifyPostIsDeleted(response);
     }
 

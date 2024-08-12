@@ -20,14 +20,11 @@ public class UpdatePostTest extends BaseTest {
     @DisplayName("Update post")
     @Description("Update post")
     public void publishPostTest() {
-        // given
         int id = random.nextInt(100);
         PostRequest postRequest = PostRequestGenerator.generateRandom();
 
-        // when
         PostResponse postResponse = postController.updatePost(id, postRequest);
 
-        // then
         PostAssertions.verifyPostRequestAndResponseAreEquals(postRequest, postResponse);
         PostAssertions.verifyPostResponseId(postResponse, id);
     }

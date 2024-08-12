@@ -4,29 +4,25 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import org.example.assertions.PostAssertions;
-import org.example.generators.PostRequestGenerator;
 import org.example.model.PostRequest;
 import org.example.model.PostResponse;
 import org.example.tests.BaseTest;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 @Epic("Post")
 @Feature("Publish Post")
 @DisplayName("Create Post Test")
 public class CreatePostTest extends BaseTest {
 
-    @Test
+    @ParameterizedTest(name = "Publish Post")
     @DisplayName("Publish post")
     @Description("Publish post")
-    public void publishPostTest() {
-        // given
-        PostRequest postRequest = PostRequestGenerator.generateRandom();
-
-        // when
+    @MethodSource("org.example.dataprovider.post.PostDataProvider#provideRandomPost")
+    public void publishPostTest(PostRequest postRequest) {
         PostResponse postResponse = postController.publishPost(postRequest);
 
-        // then
         PostAssertions.verifyPostRequestAndResponseAreEquals(postRequest, postResponse);
     }
 

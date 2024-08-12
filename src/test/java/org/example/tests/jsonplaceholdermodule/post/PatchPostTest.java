@@ -20,7 +20,6 @@ public class PatchPostTest extends BaseTest {
     @DisplayName("Patch post")
     @Description("Patch post")
     public void pathPostTest() {
-        // given
         int id = random.nextInt(100);
         PostResponse response = postController.getPostById(1);
 
@@ -32,10 +31,8 @@ public class PatchPostTest extends BaseTest {
                 .body(response.body())
                 .build();
 
-        // when
         PostResponse postResponse = postController.patchPost(id, postRequest);
 
-        // then
         PostAssertions.verifyPostRequestAndResponseAreEquals(postRequest, postResponse);
         PostAssertions.verifyPostResponseId(postResponse, id);
     }

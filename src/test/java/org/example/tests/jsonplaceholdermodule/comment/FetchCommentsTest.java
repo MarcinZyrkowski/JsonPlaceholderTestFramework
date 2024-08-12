@@ -20,15 +20,11 @@ public class FetchCommentsTest extends BaseTest {
     @Description("Get comment by postId and id")
     @MethodSource("org.example.dataprovider.comment.CommentDataProvider#commentsForPostId1AndId2")
     public void getCommentsByPostIdAndIdTest(CommentListResponse expectedCommentsListResponse) {
-        // given
         int postId = 1;
         int id = 2;
 
-        // when
-        CommentListResponse commentListResponse = commentController.getCommentsByPostIdAndId(postId,
-                id);
+        CommentListResponse commentListResponse = commentController.getCommentsByPostIdAndId(postId, id);
 
-        // then
         CommentAssertions.verifyCommentList(commentListResponse, expectedCommentsListResponse);
     }
 
@@ -37,13 +33,10 @@ public class FetchCommentsTest extends BaseTest {
     @Description("Get comment by postId")
     @MethodSource("org.example.dataprovider.comment.CommentDataProvider#commentsForPostWithId1")
     public void getCommentsByPostIdTest(CommentListResponse expectedCommentsListResponse) {
-        // given
         int postId = 1;
 
-        // when
         CommentListResponse commentListResponse = commentController.getCommentsByPostId(postId);
 
-        // then
         CommentAssertions.verifyCommentList(commentListResponse, expectedCommentsListResponse);
     }
 
@@ -52,13 +45,10 @@ public class FetchCommentsTest extends BaseTest {
     @Description("Get comment for postId")
     @MethodSource("org.example.dataprovider.comment.CommentDataProvider#commentsForPostWithId1")
     public void getCommentsForPostIdTest(CommentListResponse expectedCommentsListResponse) {
-        // given
         int postId = 1;
 
-        // when
         CommentListResponse commentListResponse = commentController.getCommentsForPostId(postId);
 
-        // then
         CommentAssertions.verifyCommentList(commentListResponse, expectedCommentsListResponse);
     }
 

@@ -44,4 +44,11 @@ public class PostAssertions {
                 .isEqualTo(expectedNumberOfAllPosts);
     }
 
+    @Step("Verify post responses")
+    public static void verifyPostResponses(PostResponse actual, PostResponse expected) {
+        Assertions.assertThat(actual)
+                .withFailMessage("Response is different than expected")
+                .isEqualTo(expected);
+    }
+
 }

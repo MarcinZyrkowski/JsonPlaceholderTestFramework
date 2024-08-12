@@ -3,7 +3,6 @@ package org.example.tests.jsonplaceholdermodule.post;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import org.assertj.core.api.Assertions;
 import org.example.assertions.PostAssertions;
 import org.example.model.PostListResponse;
 import org.example.model.PostResponse;
@@ -23,29 +22,21 @@ public class FetchPostTest extends BaseTest {
     @Description("Get post")
     @MethodSource("org.example.dataprovider.post.PostDataProvider#postWithId1")
     public void getPostTest(PostResponse expectedResponse) {
-        // given
         int id = 1;
 
-        // when
         PostResponse postResponse = postController.getPostById(id);
 
-        // then
-        Assertions.assertThat(postResponse)
-                .withFailMessage("Response is different than expected")
-                .isEqualTo(expectedResponse);
+        PostAssertions.verifyPostResponses(postResponse, expectedResponse);
     }
 
     @Test
     @DisplayName("Get all posts")
     @Description("Get all posts")
     public void getAllPostsTest() {
-        // given
         int expectedNumberOfAllPosts = 100;
 
-        // when
         PostListResponse postListResponse = postController.getAllPosts();
 
-        // then
         PostAssertions.verifyPostResponseListSize(postListResponse, expectedNumberOfAllPosts);
     }
 

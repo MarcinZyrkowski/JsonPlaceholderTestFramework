@@ -1,6 +1,7 @@
 package org.example.dataprovider.post;
 
 import io.qameta.allure.Step;
+import org.example.generators.PostRequestGenerator;
 import org.example.model.PostResponse;
 import org.junit.jupiter.params.provider.Arguments;
 
@@ -20,6 +21,13 @@ public class PostDataProvider {
 
         return Stream.of(
                 Arguments.of(postResponseWithId1)
+        );
+    }
+
+    @Step("Provide random post")
+    public static Stream<Arguments> provideRandomPost() {
+        return Stream.of(
+                Arguments.of(PostRequestGenerator.generateRandom())
         );
     }
 
