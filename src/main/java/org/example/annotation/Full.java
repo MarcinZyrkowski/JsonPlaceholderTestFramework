@@ -1,4 +1,4 @@
-package org.example.annotations;
+package org.example.annotation;
 
 import org.junit.jupiter.api.Tag;
 

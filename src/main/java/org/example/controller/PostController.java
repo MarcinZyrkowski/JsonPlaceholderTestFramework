@@ -2,7 +2,7 @@ package org.example.controller;
 
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
-import org.example.assertions.HttpAssertions;
+import org.example.assertions.HttpAssertion;
 import org.example.client.PostClient;
 import org.example.model.PostListResponse;
 import org.example.model.PostRequest;
@@ -17,7 +17,7 @@ public class PostController {
     @Step("Get Post by Id: {id}")
     public PostResponse getPostById(int id) {
         Response response = postClient.getPostById(id);
-        HttpAssertions.statusResponseIsOk(response);
+        HttpAssertion.statusResponseIsOk(response);
 
         return response.as(PostResponse.class);
     }
@@ -25,7 +25,7 @@ public class PostController {
     @Step("Get all Posts")
     public PostListResponse getAllPosts() {
         Response response = postClient.getAllPosts();
-        HttpAssertions.statusResponseIsOk(response);
+        HttpAssertion.statusResponseIsOk(response);
 
         PostResponse[] postResponseArray = response.as(PostResponse[].class);
         return new PostListResponse(List.of(postResponseArray));
@@ -34,7 +34,7 @@ public class PostController {
     @Step("Publish Post")
     public PostResponse publishPost(PostRequest postRequest) {
         Response response = postClient.postPost(postRequest);
-        HttpAssertions.statusResponseIsCreated(response);
+        HttpAssertion.statusResponseIsCreated(response);
 
         return response.as(PostResponse.class);
     }
@@ -42,7 +42,7 @@ public class PostController {
     @Step("Delete Post by Id: {id}")
     public String deletePost(int id) {
         Response response = postClient.deletePost(id);
-        HttpAssertions.statusResponseIsOk(response);
+        HttpAssertion.statusResponseIsOk(response);
 
         return response.body().asString();
     }
@@ -50,7 +50,7 @@ public class PostController {
     @Step("Update Post")
     public PostResponse updatePost(int id, PostRequest postRequest) {
         Response response = postClient.putPost(id, postRequest);
-        HttpAssertions.statusResponseIsOk(response);
+        HttpAssertion.statusResponseIsOk(response);
 
         return response.as(PostResponse.class);
     }
@@ -58,7 +58,7 @@ public class PostController {
     @Step("Patch Post")
     public PostResponse patchPost(int id, PostRequest postRequest) {
         Response response = postClient.patchPost(id, postRequest);
-        HttpAssertions.statusResponseIsOk(response);
+        HttpAssertion.statusResponseIsOk(response);
 
         return response.as(PostResponse.class);
     }

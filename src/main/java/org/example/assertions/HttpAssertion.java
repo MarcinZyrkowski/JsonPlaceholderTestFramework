@@ -5,7 +5,7 @@ import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.assertj.core.api.Assertions;
 
-public class HttpAssertions {
+public class HttpAssertion {
 
     public static void validateResponseStatusCode(Response response, int httpStatusCode) {
         Assertions.assertThat(response.getStatusCode())

@@ -3,7 +3,7 @@ package org.example.tests.jsonplaceholdermodule.post;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import org.example.assertions.PostAssertions;
+import org.example.assertions.PostAssertion;
 import org.example.tests.BaseTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ public class DeletePostTest extends BaseTest {
 
         String response = postController.deletePost(id);
 
-        PostAssertions.verifyPostIsDeleted(response);
+        PostAssertion.verifyPostIsDeleted(response);
     }
 
 }

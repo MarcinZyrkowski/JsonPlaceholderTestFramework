@@ -1,6 +1,6 @@
 package org.example.tests;
 
-import org.example.annotations.Full;
+import org.example.annotation.Full;
 import org.example.controller.CommentController;
 import org.example.controller.PostController;
 

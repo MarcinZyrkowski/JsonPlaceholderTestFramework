@@ -7,7 +7,7 @@ import org.example.model.PostRequest;
 import org.example.model.PostResponse;
 import org.example.utils.JsonConverter;
 
-public class PostAssertions {
+public class PostAssertion {
 
     @Step("Verify Post Response and compare it to Post Request")
     public static void verifyPostRequestAndResponseAreEquals(PostRequest postRequest,

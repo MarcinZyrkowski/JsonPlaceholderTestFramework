@@ -3,7 +3,7 @@ package org.example.tests.jsonplaceholdermodule.post;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import org.example.assertions.PostAssertions;
+import org.example.assertions.PostAssertion;
 import org.example.model.PostRequest;
 import org.example.model.PostResponse;
 import org.example.tests.BaseTest;
@@ -25,8 +25,8 @@ public class UpdatePostTest extends BaseTest {
 
         PostResponse postResponse = postController.updatePost(id, postRequest);
 
-        PostAssertions.verifyPostRequestAndResponseAreEquals(postRequest, postResponse);
-        PostAssertions.verifyPostResponseId(postResponse, id);
+        PostAssertion.verifyPostRequestAndResponseAreEquals(postRequest, postResponse);
+        PostAssertion.verifyPostResponseId(postResponse, id);
     }
 
 }

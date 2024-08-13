@@ -3,7 +3,7 @@ package org.example.tests.jsonplaceholdermodule.post;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import org.example.assertions.PostAssertions;
+import org.example.assertions.PostAssertion;
 import org.example.model.PostRequest;
 import org.example.model.PostResponse;
 import org.example.tests.BaseTest;
@@ -23,7 +23,7 @@ public class CreatePostTest extends BaseTest {
     public void publishPostTest(PostRequest postRequest) {
         PostResponse postResponse = postController.publishPost(postRequest);
 
-        PostAssertions.verifyPostRequestAndResponseAreEquals(postRequest, postResponse);
+        PostAssertion.verifyPostRequestAndResponseAreEquals(postRequest, postResponse);
     }
 
 }

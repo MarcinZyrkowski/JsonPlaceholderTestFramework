@@ -5,7 +5,7 @@ import org.assertj.core.api.Assertions;
 import org.example.model.CommentListResponse;
 import org.example.utils.JsonConverter;
 
-public class CommentAssertions {
+public class CommentAssertion {
 
     @Step("Verify comment list")
     public static void verifyCommentList(CommentListResponse commentListResponseActual,

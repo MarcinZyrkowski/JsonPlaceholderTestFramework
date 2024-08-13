@@ -3,7 +3,7 @@ package org.example.tests.jsonplaceholdermodule.post;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import org.example.assertions.PostAssertions;
+import org.example.assertions.PostAssertion;
 import org.example.model.PostListResponse;
 import org.example.model.PostResponse;
 import org.example.tests.BaseTest;
@@ -26,7 +26,7 @@ public class FetchPostTest extends BaseTest {
 
         PostResponse postResponse = postController.getPostById(id);
 
-        PostAssertions.verifyPostResponses(postResponse, expectedResponse);
+        PostAssertion.verifyPostResponses(postResponse, expectedResponse);
     }
 
     @Test
@@ -37,7 +37,7 @@ public class FetchPostTest extends BaseTest {
 
         PostListResponse postListResponse = postController.getAllPosts();
 
-        PostAssertions.verifyPostResponseListSize(postListResponse, expectedNumberOfAllPosts);
+        PostAssertion.verifyPostResponseListSize(postListResponse, expectedNumberOfAllPosts);
     }
 
 }

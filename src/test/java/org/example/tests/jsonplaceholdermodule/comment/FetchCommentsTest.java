@@ -3,7 +3,7 @@ package org.example.tests.jsonplaceholdermodule.comment;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import org.example.assertions.CommentAssertions;
+import org.example.assertions.CommentAssertion;
 import org.example.model.CommentListResponse;
 import org.example.tests.BaseTest;
 import org.junit.jupiter.api.DisplayName;
@@ -25,7 +25,7 @@ public class FetchCommentsTest extends BaseTest {
 
         CommentListResponse commentListResponse = commentController.getCommentsByPostIdAndId(postId, id);
 
-        CommentAssertions.verifyCommentList(commentListResponse, expectedCommentsListResponse);
+        CommentAssertion.verifyCommentList(commentListResponse, expectedCommentsListResponse);
     }
 
     @ParameterizedTest(name = "Get comments by post id")
@@ -37,7 +37,7 @@ public class FetchCommentsTest extends BaseTest {
 
         CommentListResponse commentListResponse = commentController.getCommentsByPostId(postId);
 
-        CommentAssertions.verifyCommentList(commentListResponse, expectedCommentsListResponse);
+        CommentAssertion.verifyCommentList(commentListResponse, expectedCommentsListResponse);
     }
 
     @ParameterizedTest(name = "Get comments for post id")
@@ -49,7 +49,7 @@ public class FetchCommentsTest extends BaseTest {
 
         CommentListResponse commentListResponse = commentController.getCommentsForPostId(postId);
 
-        CommentAssertions.verifyCommentList(commentListResponse, expectedCommentsListResponse);
+        CommentAssertion.verifyCommentList(commentListResponse, expectedCommentsListResponse);
     }
 
 }
