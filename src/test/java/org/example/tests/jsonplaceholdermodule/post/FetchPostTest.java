@@ -17,27 +17,27 @@ import org.junit.jupiter.params.provider.MethodSource;
 @DisplayName("Fetch Post Test")
 public class FetchPostTest extends BaseTest {
 
-    @ParameterizedTest(name = "Get Post for id = 1")
-    @DisplayName("Get post")
-    @Description("Get post")
-    @MethodSource("org.example.dataprovider.post.PostDataProvider#postWithId1")
-    public void getPostTest(PostResponse expectedResponse) {
-        int id = 1;
+  @ParameterizedTest(name = "Get Post for id = 1")
+  @DisplayName("Get post")
+  @Description("Get post")
+  @MethodSource("org.example.dataprovider.post.PostDataProvider#postWithId1")
+  public void getPostTest(PostResponse expectedResponse) {
+    int id = 1;
 
-        PostResponse postResponse = postController.getPostById(id);
+    PostResponse postResponse = postController.getPostById(id);
 
-        PostAssertion.verifyPostResponses(postResponse, expectedResponse);
-    }
+    PostAssertion.verifyPostResponses(postResponse, expectedResponse);
+  }
 
-    @Test
-    @DisplayName("Get all posts")
-    @Description("Get all posts")
-    public void getAllPostsTest() {
-        int expectedNumberOfAllPosts = 100;
+  @Test
+  @DisplayName("Get all posts")
+  @Description("Get all posts")
+  public void getAllPostsTest() {
+    int expectedNumberOfAllPosts = 100;
 
-        PostListResponse postListResponse = postController.getAllPosts();
+    PostListResponse postListResponse = postController.getAllPosts();
 
-        PostAssertion.verifyPostResponseListSize(postListResponse, expectedNumberOfAllPosts);
-    }
+    PostAssertion.verifyPostResponseListSize(postListResponse, expectedNumberOfAllPosts);
+  }
 
 }

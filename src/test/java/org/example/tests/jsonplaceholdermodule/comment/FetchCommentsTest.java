@@ -15,41 +15,41 @@ import org.junit.jupiter.params.provider.MethodSource;
 @DisplayName("Fetch Comment")
 public class FetchCommentsTest extends BaseTest {
 
-    @ParameterizedTest(name = "Get comments by postId and id")
-    @DisplayName("Get comment by postId and id")
-    @Description("Get comment by postId and id")
-    @MethodSource("org.example.dataprovider.comment.CommentDataProvider#commentsForPostId1AndId2")
-    public void getCommentsByPostIdAndIdTest(CommentListResponse expectedCommentsListResponse) {
-        int postId = 1;
-        int id = 2;
+  @ParameterizedTest(name = "Get comments by postId and id")
+  @DisplayName("Get comment by postId and id")
+  @Description("Get comment by postId and id")
+  @MethodSource("org.example.dataprovider.comment.CommentDataProvider#commentsForPostId1AndId2")
+  public void getCommentsByPostIdAndIdTest(CommentListResponse expectedCommentsListResponse) {
+    int postId = 1;
+    int id = 2;
 
-        CommentListResponse commentListResponse = commentController.getCommentsByPostIdAndId(postId, id);
+    CommentListResponse commentListResponse = commentController.getCommentsByPostIdAndId(postId, id);
 
-        CommentAssertion.verifyCommentList(commentListResponse, expectedCommentsListResponse);
-    }
+    CommentAssertion.verifyCommentList(commentListResponse, expectedCommentsListResponse);
+  }
 
-    @ParameterizedTest(name = "Get comments by post id")
-    @DisplayName("Get comment by postId")
-    @Description("Get comment by postId")
-    @MethodSource("org.example.dataprovider.comment.CommentDataProvider#commentsForPostWithId1")
-    public void getCommentsByPostIdTest(CommentListResponse expectedCommentsListResponse) {
-        int postId = 1;
+  @ParameterizedTest(name = "Get comments by post id")
+  @DisplayName("Get comment by postId")
+  @Description("Get comment by postId")
+  @MethodSource("org.example.dataprovider.comment.CommentDataProvider#commentsForPostWithId1")
+  public void getCommentsByPostIdTest(CommentListResponse expectedCommentsListResponse) {
+    int postId = 1;
 
-        CommentListResponse commentListResponse = commentController.getCommentsByPostId(postId);
+    CommentListResponse commentListResponse = commentController.getCommentsByPostId(postId);
 
-        CommentAssertion.verifyCommentList(commentListResponse, expectedCommentsListResponse);
-    }
+    CommentAssertion.verifyCommentList(commentListResponse, expectedCommentsListResponse);
+  }
 
-    @ParameterizedTest(name = "Get comments for post id")
-    @DisplayName("Get comment for postId")
-    @Description("Get comment for postId")
-    @MethodSource("org.example.dataprovider.comment.CommentDataProvider#commentsForPostWithId1")
-    public void getCommentsForPostIdTest(CommentListResponse expectedCommentsListResponse) {
-        int postId = 1;
+  @ParameterizedTest(name = "Get comments for post id")
+  @DisplayName("Get comment for postId")
+  @Description("Get comment for postId")
+  @MethodSource("org.example.dataprovider.comment.CommentDataProvider#commentsForPostWithId1")
+  public void getCommentsForPostIdTest(CommentListResponse expectedCommentsListResponse) {
+    int postId = 1;
 
-        CommentListResponse commentListResponse = commentController.getCommentsForPostId(postId);
+    CommentListResponse commentListResponse = commentController.getCommentsForPostId(postId);
 
-        CommentAssertion.verifyCommentList(commentListResponse, expectedCommentsListResponse);
-    }
+    CommentAssertion.verifyCommentList(commentListResponse, expectedCommentsListResponse);
+  }
 
 }

@@ -16,25 +16,25 @@ import org.junit.jupiter.api.Test;
 @DisplayName("Patch Post Test")
 public class PatchPostTest extends BaseTest {
 
-    @Test
-    @DisplayName("Patch post")
-    @Description("Patch post")
-    public void pathPostTest() {
-        int id = random.nextInt(100);
-        PostResponse response = postController.getPostById(1);
+  @Test
+  @DisplayName("Patch post")
+  @Description("Patch post")
+  public void pathPostTest() {
+    int id = random.nextInt(100);
+    PostResponse response = postController.getPostById(1);
 
-        // we only want to modify title
-        PostRequest postRequestTemplate = PostRequestGenerator.generateRandom();
-        PostRequest postRequest = PostRequest.builder()
-                .userId(response.userId())
-                .title(postRequestTemplate.title())
-                .body(response.body())
-                .build();
+    // we only want to modify title
+    PostRequest postRequestTemplate = PostRequestGenerator.generateRandom();
+    PostRequest postRequest = PostRequest.builder()
+        .userId(response.userId())
+        .title(postRequestTemplate.title())
+        .body(response.body())
+        .build();
 
-        PostResponse postResponse = postController.patchPost(id, postRequest);
+    PostResponse postResponse = postController.patchPost(id, postRequest);
 
-        PostAssertion.verifyPostRequestAndResponseAreEquals(postRequest, postResponse);
-        PostAssertion.verifyPostResponseId(postResponse, id);
-    }
+    PostAssertion.verifyPostRequestAndResponseAreEquals(postRequest, postResponse);
+    PostAssertion.verifyPostResponseId(postResponse, id);
+  }
 
 }

@@ -16,14 +16,14 @@ import org.junit.jupiter.params.provider.MethodSource;
 @DisplayName("Create Post Test")
 public class CreatePostTest extends BaseTest {
 
-    @ParameterizedTest(name = "Publish Post")
-    @DisplayName("Publish post")
-    @Description("Publish post")
-    @MethodSource("org.example.dataprovider.post.PostDataProvider#provideRandomPost")
-    public void publishPostTest(PostRequest postRequest) {
-        PostResponse postResponse = postController.publishPost(postRequest);
+  @ParameterizedTest(name = "Publish Post")
+  @DisplayName("Publish post")
+  @Description("Publish post")
+  @MethodSource("org.example.dataprovider.post.PostDataProvider#provideRandomPost")
+  public void publishPostTest(PostRequest postRequest) {
+    PostResponse postResponse = postController.publishPost(postRequest);
 
-        PostAssertion.verifyPostRequestAndResponseAreEquals(postRequest, postResponse);
-    }
+    PostAssertion.verifyPostRequestAndResponseAreEquals(postRequest, postResponse);
+  }
 
 }

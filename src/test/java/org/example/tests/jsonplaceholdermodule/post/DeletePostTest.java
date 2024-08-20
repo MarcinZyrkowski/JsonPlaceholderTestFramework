@@ -13,15 +13,15 @@ import org.junit.jupiter.api.Test;
 @DisplayName("Delete Post Test")
 public class DeletePostTest extends BaseTest {
 
-    @Test
-    @DisplayName("Delete post")
-    @Description("Delete post")
-    public void publishPostTest() {
-        int id = random.nextInt(100);
+  @Test
+  @DisplayName("Delete post")
+  @Description("Delete post")
+  public void publishPostTest() {
+    int id = random.nextInt(100);
 
-        String response = postController.deletePost(id);
+    String response = postController.deletePost(id);
 
-        PostAssertion.verifyPostIsDeleted(response);
-    }
+    PostAssertion.verifyPostIsDeleted(response);
+  }
 
 }

@@ -7,15 +7,15 @@ import org.example.utils.JsonConverter;
 
 public class CommentAssertion {
 
-    @Step("Verify comment list")
-    public static void verifyCommentList(CommentListResponse commentListResponseActual,
-                                         CommentListResponse commentListResponseExpected) {
-        Assertions.assertThat(commentListResponseActual)
-                .as("Comment List Actual: \n" + JsonConverter.serializePojo(commentListResponseActual)
-                        + "\nComment List Expected: \n" + JsonConverter.serializePojo(
-                        commentListResponseExpected))
-                .withFailMessage("Comment List Response is different than expected")
-                .isEqualTo(commentListResponseExpected);
-    }
+  @Step("Verify comment list")
+  public static void verifyCommentList(CommentListResponse commentListResponseActual,
+      CommentListResponse commentListResponseExpected) {
+    Assertions.assertThat(commentListResponseActual)
+        .as("Comment List Actual: \n" + JsonConverter.serializePojo(commentListResponseActual)
+            + "\nComment List Expected: \n" + JsonConverter.serializePojo(
+            commentListResponseExpected))
+        .withFailMessage("Comment List Response is different than expected")
+        .isEqualTo(commentListResponseExpected);
+  }
 
 }
